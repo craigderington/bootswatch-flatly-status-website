@@ -84,28 +84,66 @@ def pixeltracker():
     return render_template(
         'pixeltracker.html',
         today=get_date(),
-        status=get_service(config.earl_pixel_tracker)
+        status=get_service(config.earl_pixel_tracker),
+        pixel_tracker=config.earl_pixel_tracker
     )
 
 
 @app.route('/webadmin', methods=['GET'])
 def webadmin():
-    pass
+    """
+    EARL Web Admin status page
+    :return:
+    """
+    return render_template(
+        'webadmin.html',
+        today=get_date(),
+        status=get_service(config.earl_web_admin),
+        web_admin=config.earl_web_admin
+    )
 
 
 @app.route('/dealerportal', methods=['GET'])
 def dealerportal():
-    pass
+    """
+    Dealer Portal page
+    :return: template
+    """
+    return render_template(
+        'dealerportal.html',
+        today=get_date(),
+        status=get_service(config.earl_dealer_portal),
+        dealer_portal=config.earl_dealer_portal
+    )
 
 
 @app.route('/modeladmin', methods=['GET'])
 def modeladmin():
-    pass
+    """
+    EARL Model Admin Page
+    :return: template
+    """
+
+    return render_template(
+        'modeladmin.html',
+        today=get_date(),
+        status=get_service(config.earl_data_admin),
+        model_admin=config.earl_data_admin
+    )
 
 
 @app.route('/automation', methods=['GET'])
 def automation():
-    pass
+    """
+    EARL Automation status page
+    :return: template
+    """
+    return render_template(
+        'automation.html',
+        today=get_date(),
+        status=get_service(config.earl_auto),
+        automation=config.earl_auto
+    )
 
 
 @app.errorhandler(404)

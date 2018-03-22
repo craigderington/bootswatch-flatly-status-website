@@ -1,10 +1,13 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% extends "_layout.html" %}
+{% block title %}EARL Service Status | Error 404.  Page Not Found.{% endblock %}
+{% block content %}
 
-</body>
-</html>
+    <div class="bs-component">
+        <div class="jumbotron">
+            <h1 align="center"><i class="fa fa-warning fa-3x text-primary"></i></h1>
+            <h1 align="center">ERROR 404 | PAGE NOT FOUND</h1>
+            <p class="lead">Sorry, but the requested page can not be found on this server.  Perhaps, it got moved.  Who really knows such things?  Anyways, what you were looking for is not here right now..., so <a href="{{ url_for('index') }}">click here</a> to navigate away from this page.</p>
+        </div>
+    </div>
+
+{% endblock %}
