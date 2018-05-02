@@ -149,7 +149,7 @@ def automation():
 
 
 @app.route('/api', methods=['GET'])
-def automation():
+def api():
     """
     EARL Automation status page
     :return: template
