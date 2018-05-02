@@ -33,7 +33,7 @@
             <li class="list-group-item d-flex justify-content-between align-items-center">
                 <a href="{{ url_for('webadmin') }}">EARL Web Admin</a>
                 <span class="pull-right">
-                    {% if status['earl-web-admin.ngrok.io'] == 1 %}
+                    {% if status['admin.earl-bdc.com'] == 1 %}
                     <i class="fa fa-check-circle fa-2x text-success" style="margin-bottom: 10px;"></i>
                     {% else %}
                     <i class="fa fa-warning fa-2x text-danger" style="margin-bottom: 10px;"></i>
@@ -43,7 +43,17 @@
             <li class="list-group-item d-flex justify-content-between align-items-center">
                 <a href="{{ url_for('dealerportal') }}">EARL Dealer Portal</a>
                 <span class="pull-right">
-                    {% if status['admin.earl-bdc.com'] == 1 %}
+                    {% if status['portal.earl-bdc.com'] == 1 %}
+                    <i class="fa fa-check-circle fa-2x text-success" style="margin-bottom: 10px;"></i>
+                    {% else %}
+                    <i class="fa fa-warning fa-2x text-danger" style="margin-bottom: 10px;"></i>
+                    {% endif %}
+                </span>
+            </li>
+            <li class="list-group-item d-flex justify-content-between align-items-center">
+                <a href="{{ url_for('api') }}">EARL API</a>
+                <span class="pull-right">
+                    {% if status['earl-bdc.com'] == 1 %}
                     <i class="fa fa-check-circle fa-2x text-success" style="margin-bottom: 10px;"></i>
                     {% else %}
                     <i class="fa fa-warning fa-2x text-danger" style="margin-bottom: 10px;"></i>

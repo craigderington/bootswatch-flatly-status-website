@@ -14,7 +14,7 @@ import datetime
 import requests
 
 # debug
-debug = True
+debug = config.DEBUG
 
 # app config
 app = Flask(__name__)
@@ -39,10 +39,12 @@ app.config.update(accept_content=['json', 'pickle'])
 celery = Celery(app.name, broker=app.config['CELERY_BROKER_URL'])
 celery.conf.update(app.config)
 
+
 # clear all db sessions at the end of each request
 @app.teardown_appcontext
 def shutdown_session(exception=None):
     db_session.remove()
+
 
 # app default route
 @app.route('/', methods=['GET'])
@@ -55,7 +57,7 @@ def index():
     overall_status = "OPERATIONAL"
     service_status = {}
     service_list = [config.earl_auto, config.earl_data_admin, config.earl_pixel_tracker,
-                    config.earl_dealer_portal, config.earl_web_admin]
+                    config.earl_dealer_portal, config.earl_web_admin, config.earl_api]
 
     for service in service_list:
 
@@ -146,6 +148,20 @@ def automation():
     )
 
 
+@app.route('/api', methods=['GET'])
+def automation():
+    """
+    EARL Automation status page
+    :return: template
+    """
+    return render_template(
+        'api.html',
+        today=get_date(),
+        status=get_service(config.earl_api),
+        api=config.earl_api
+    )
+
+
 @app.errorhandler(404)
 def page_not_found(err):
     return render_template('error-404.html'), 404
@@ -188,7 +204,7 @@ def get_service(service_name):
     }
 
     # make the call
-    r = requests.get(service_url, headers=hdr)
+    r = requests.get(service_url, headers=hdr, verify=False)
 
     # handle the response
     if r.status_code == 200:
